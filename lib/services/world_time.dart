@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class WorldTime {
   String location;
@@ -19,12 +20,11 @@ class WorldTime {
       String offset = data['utc_offset'].substring(1, 3);
 
       // print(dateTime);
-      print(offset);
 
       DateTime now = DateTime.parse(dateTime);
       now = now.add(Duration(hours: int.parse(offset)));
       // DateTime now2 = now.add(const Duration(days: 5));
-      time = now.toString();
+      time = DateFormat.jm().format(now);
     } catch (err) {
       print("The error is : $err");
       time = "Sorry Could Not Fetch Time";

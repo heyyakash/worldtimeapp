@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-
 import 'package:worldtimemap/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
@@ -19,9 +17,9 @@ class _LoadingState extends State<Loading> {
   void setupWorldTime() async {
     WorldTime instance = WorldTime(location: 'Berlin', url: 'Europe/Berlin');
     await instance.getData();
-    setState(() {
-      status = instance.time;
-    });
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, '/home',
+        arguments: {'location': instance.location, 'time': instance.time});
   }
 
   @override
@@ -32,8 +30,13 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Text(status),
-    ));
+      backgroundColor: Colors.blueAccent,
+      body: Center(
+        child: SpinKitRotatingCircle(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
+    );
   }
 }
