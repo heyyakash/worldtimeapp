@@ -15,11 +15,14 @@ class _LoadingState extends State<Loading> {
   String status = "Loading";
 
   void setupWorldTime() async {
-    WorldTime instance = WorldTime(location: 'Berlin', url: 'Europe/Berlin');
+    WorldTime instance = WorldTime(location: 'Kolkata', url: 'Asia/Kolkata');
     await instance.getData();
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/home',
-        arguments: {'location': instance.location, 'time': instance.time});
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'time': instance.time,
+      'isDayTime': instance.isDayTime
+    });
   }
 
   @override
