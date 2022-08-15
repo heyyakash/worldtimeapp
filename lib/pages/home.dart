@@ -14,8 +14,12 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
-      body: SafeArea(child: Text("Hello World")),
+      body: SafeArea(
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/location");
+              },
+              child: Text("Edit Location"))),
     );
   }
 }

@@ -11,6 +11,14 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text("Location"));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Edit Location",
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+    );
   }
 }
